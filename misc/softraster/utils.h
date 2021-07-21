@@ -193,7 +193,8 @@ FORCE_INLINE float orient(const edge_t<float> &edge,
                           const point_t<float> &other_point,
                           const point_t<float> &point)
 {
-  return -halfspace(edge, point) + (is_top_left(edge, other_point) ? 0 : -0.5);
+  return -halfspace(edge, point) +
+         (is_top_left(edge, other_point) ? 0.0f : -0.5f);
 }
 
 template<typename T>

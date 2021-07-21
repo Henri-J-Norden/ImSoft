@@ -23,8 +23,8 @@ void ImGui_ImplSoftraster_NewFrame()
   if (Screen == nullptr) return;
 
   ImGuiIO &io      = ImGui::GetIO();
-  io.DisplaySize.x = Screen->w;
-  io.DisplaySize.y = Screen->h;
+  io.DisplaySize.x = static_cast<float>(Screen->w);
+  io.DisplaySize.y = static_cast<float>(Screen->h);
 }
 
 void ImGui_ImplSoftraster_RenderDrawData(ImDrawData *draw_data)

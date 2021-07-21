@@ -43,15 +43,17 @@ void renderQuadCore(texture_t<SCREEN> &screen,
 
   if (blit)
   {
-    const POS u = startu - rx.min;
-    const POS v = startv - ry.min;
+    const POS u = static_cast<POS>(startu - rx.min);
+    const POS v = static_cast<POS>(startv - ry.min);
     if (alphaBlend)
     {
       for (POS y = ry.min; y < ry.max; ++y)
       {
         for (POS x = rx.min; x < rx.max; ++x)
         {
-          screen.at(x, y) %= quad.p1.c * tex.at(x + u, y + v);
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) %=
+            quad.p1.c *
+            tex.at(static_cast<size_t>(x + u), static_cast<size_t>(y + v));
         }
       }
     }
@@ -61,7 +63,9 @@ void renderQuadCore(texture_t<SCREEN> &screen,
       {
         for (POS x = rx.min; x < rx.max; ++x)
         {
-          screen.at(x, y) = quad.p1.c * tex.at(x + u, y + v);
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) =
+            quad.p1.c *
+            tex.at(static_cast<size_t>(x + u), static_cast<size_t>(y + v));
         }
       }
     }
@@ -78,7 +82,8 @@ void renderQuadCore(texture_t<SCREEN> &screen,
         POS x   = rx.min;
         while (x < rx.max)
         {
-          screen.at(x, y) %= quad.p1.c * tex.at(u, v);
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) %=
+            quad.p1.c * tex.at(static_cast<size_t>(u), static_cast<size_t>(v));
           ++x;
           u += duDx;
         }
@@ -96,7 +101,8 @@ void renderQuadCore(texture_t<SCREEN> &screen,
         POS x   = rx.min;
         while (x < rx.max)
         {
-          screen.at(x, y) = quad.p1.c * tex.at(u, v);
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) =
+            quad.p1.c * tex.at(static_cast<size_t>(u), static_cast<size_t>(v));
           ++x;
           u += duDx;
         }
@@ -126,7 +132,7 @@ void renderQuadCore(texture_t<SCREEN> &screen,
     {
       for (POS x = rx.min; x < rx.max; ++x)
       {
-        screen.at(x, y) %= quad.p1.c;
+        screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) %= quad.p1.c;
       }
     }
   }
@@ -136,7 +142,7 @@ void renderQuadCore(texture_t<SCREEN> &screen,
     {
       for (POS x = rx.min; x < rx.max; ++x)
       {
-        screen.at(x, y) = quad.p1.c;
+        screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) = quad.p1.c;
       }
     }
   }
@@ -224,13 +230,15 @@ void renderTriCore(texture_t<SCREEN> &screen,
       {
         if (!triangle_hit(bary, x, y)) continue;
         pixel_t<POS, COLOR> p;
-        p.x = x;
-        p.y = y;
+        p.x = static_cast<POS>(x);
+        p.y = static_cast<POS>(y);
         barycentricUV(p, bary);
 
         point_t<POS> coord = texCoord(p, tex);
 
-        screen.at(x, y) %= bary.a.c * tex.at(coord.x, coord.y);
+        screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) %=
+          bary.a.c *
+          tex.at(static_cast<size_t>(coord.x), static_cast<size_t>(coord.y));
       }
     }
   }
@@ -242,13 +250,15 @@ void renderTriCore(texture_t<SCREEN> &screen,
       {
         if (!triangle_hit(bary, x, y)) continue;
         pixel_t<POS, COLOR> p;
-        p.x = x;
-        p.y = y;
+        p.x = static_cast<POS>(x);
+        p.y = static_cast<POS>(y);
         barycentricUV(p, bary);
 
         point_t<POS> coord = texCoord(p, tex);
 
-        screen.at(x, y) = bary.a.c * tex.at(coord.x, coord.y);
+        screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) =
+          bary.a.c *
+          tex.at(static_cast<size_t>(coord.x), static_cast<size_t>(coord.y));
       }
     }
   }
@@ -278,10 +288,10 @@ void renderTriCore(texture_t<SCREEN> &screen,
         {
           if (!triangle_hit(bary, x, y)) continue;
           pixel_t<POS, COLOR> p;
-          p.x = x;
-          p.y = y;
+          p.x = static_cast<POS>(x);
+          p.y = static_cast<POS>(y);
           barycentricCol(p, bary);
-          screen.at(x, y) %= p.c;
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) %= p.c;
         }
       }
     }
@@ -293,10 +303,10 @@ void renderTriCore(texture_t<SCREEN> &screen,
         {
           if (!triangle_hit(bary, x, y)) continue;
           pixel_t<POS, COLOR> p;
-          p.x = x;
-          p.y = y;
+          p.x = static_cast<POS>(x);
+          p.y = static_cast<POS>(y);
           barycentricCol(p, bary);
-          screen.at(x, y) = p.c;
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) = p.c;
         }
       }
     }
@@ -310,7 +320,8 @@ void renderTriCore(texture_t<SCREEN> &screen,
         for (size_t x = rx.min; x < rx.max; ++x)
         {
           if (!triangle_hit(bary, x, y)) continue;
-          screen.at(x, y) %= bary.a.c;
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) %=
+            bary.a.c;
         }
       }
     }
@@ -321,7 +332,7 @@ void renderTriCore(texture_t<SCREEN> &screen,
         for (size_t x = rx.min; x < rx.max; ++x)
         {
           if (!triangle_hit(bary, x, y)) continue;
-          screen.at(x, y) = bary.a.c;
+          screen.at(static_cast<size_t>(x), static_cast<size_t>(y)) = bary.a.c;
         }
       }
     }
@@ -487,10 +498,10 @@ void renderCommand(texture_t<SCREEN> &screen,
       if (isRect)
       {
         rectangle_t<POS, SCREEN> quad;
-        quad.p1.x = tlpos.x;
-        quad.p1.y = tlpos.y;
-        quad.p2.x = brpos.x;
-        quad.p2.y = brpos.y;
+        quad.p1.x = static_cast<POS>(tlpos.x);
+        quad.p1.y = static_cast<POS>(tlpos.y);
+        quad.p2.x = static_cast<POS>(brpos.x);
+        quad.p2.y = static_cast<POS>(brpos.y);
         quad.p1.u = tluv.x;
         quad.p1.v = tluv.y;
         quad.p2.u = bruv.x;
@@ -513,8 +524,8 @@ void renderCommand(texture_t<SCREEN> &screen,
 
     triangle_t<POS, SCREEN> tri;
     // triangle_t<POS, color32_t> tri;
-    tri.p1.x = verts[0]->pos.x;
-    tri.p1.y = verts[0]->pos.y;
+    tri.p1.x = static_cast<POS>(verts[0]->pos.x);
+    tri.p1.y = static_cast<POS>(verts[0]->pos.y);
     tri.p1.u = verts[0]->uv.x;
     tri.p1.v = verts[0]->uv.y;
     tri.p1.c = color32_t(verts[0]->col >> IM_COL32_R_SHIFT,
@@ -522,8 +533,8 @@ void renderCommand(texture_t<SCREEN> &screen,
                          verts[0]->col >> IM_COL32_B_SHIFT,
                          verts[0]->col >> IM_COL32_A_SHIFT);
 
-    tri.p2.x = verts[1]->pos.x;
-    tri.p2.y = verts[1]->pos.y;
+    tri.p2.x = static_cast<POS>(verts[1]->pos.x);
+    tri.p2.y = static_cast<POS>(verts[1]->pos.y);
     tri.p2.u = verts[1]->uv.x;
     tri.p2.v = verts[1]->uv.y;
     tri.p2.c = color32_t(verts[1]->col >> IM_COL32_R_SHIFT,
@@ -531,8 +542,8 @@ void renderCommand(texture_t<SCREEN> &screen,
                          verts[1]->col >> IM_COL32_B_SHIFT,
                          verts[1]->col >> IM_COL32_A_SHIFT);
 
-    tri.p3.x = verts[2]->pos.x;
-    tri.p3.y = verts[2]->pos.y;
+    tri.p3.x = static_cast<POS>(verts[2]->pos.x);
+    tri.p3.y = static_cast<POS>(verts[2]->pos.y);
     tri.p3.u = verts[2]->uv.x;
     tri.p3.v = verts[2]->uv.y;
     tri.p3.c = color32_t(verts[2]->col >> IM_COL32_R_SHIFT,

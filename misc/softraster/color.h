@@ -384,13 +384,13 @@ inline color32_t        operator+(color32_t         lhs, const color32_t        
 
 inline alpha8_t         operator*(alpha8_t          lhs, const float rhs)
 {
-    lhs.a *= rhs;
+    lhs.a = static_cast<uint8_t>(lhs.a * rhs);
     return lhs;
 }
 
 inline value8_t         operator*(value8_t          lhs, const float rhs)
 {
-    lhs.v *= rhs;
+    lhs.v = static_cast<uint8_t>(lhs.v * rhs);
     return lhs;
 }
 
@@ -407,36 +407,36 @@ inline color16_alpha8_t operator*(color16_alpha8_t  lhs, const float rhs)
     lhs.color.rgb = C16R(static_cast<uint8_t>(C16R(lhs.color.rgb) * rhs)) |
                     C16G(static_cast<uint8_t>(C16G(lhs.color.rgb) * rhs)) |
                     C16B(static_cast<uint8_t>(C16B(lhs.color.rgb) * rhs));
-    lhs.alpha.a *= rhs;
+    lhs.alpha.a = static_cast<uint8_t>(lhs.alpha.a * rhs);
     return lhs;
 }
 
 inline color24_t        operator*(color24_t         lhs, const float rhs)
 {
-    lhs.r *= rhs;
-    lhs.g *= rhs;
-    lhs.b *= rhs;
+    lhs.r = static_cast<uint8_t>(lhs.r * rhs);
+    lhs.g = static_cast<uint8_t>(lhs.g * rhs);
+    lhs.b = static_cast<uint8_t>(lhs.b * rhs);
     return lhs;
 }
 
 inline color32_t        operator*(color32_t         lhs, const float rhs)
 {
-    lhs.r *= rhs;
-    lhs.g *= rhs;
-    lhs.b *= rhs;
-    lhs.a *= rhs;
+    lhs.r = static_cast<uint8_t>(lhs.r * rhs);
+    lhs.g = static_cast<uint8_t>(lhs.g * rhs);
+    lhs.b = static_cast<uint8_t>(lhs.b * rhs);
+    lhs.a = static_cast<uint8_t>(lhs.a * rhs);
     return lhs;
 }
 
 inline alpha8_t         operator*(const float lhs, alpha8_t          rhs)
 {
-    rhs.a *= lhs;
+    rhs.a = static_cast<uint8_t>(rhs.a * lhs);
     return rhs;
 }
 
 inline value8_t         operator*(const float lhs, value8_t          rhs)
 {
-    rhs.v *= lhs;
+    rhs.v = static_cast<uint8_t>(rhs.v * lhs);
     return rhs;
 }
 
@@ -453,24 +453,24 @@ inline color16_alpha8_t operator*(const float lhs, color16_alpha8_t  rhs)
     rhs.color.rgb = C16R(static_cast<uint8_t>(C16R(rhs.color.rgb) * lhs)) |
                     C16G(static_cast<uint8_t>(C16G(rhs.color.rgb) * lhs)) |
                     C16B(static_cast<uint8_t>(C16B(rhs.color.rgb) * lhs));
-    rhs.alpha.a *= lhs;
+    rhs.alpha.a = static_cast<uint8_t>(rhs.alpha.a * lhs);
     return rhs;
 }
 
 inline color24_t        operator*(const float lhs, color24_t         rhs)
 {
-    rhs.r *= lhs;
-    rhs.g *= lhs;
-    rhs.b *= lhs;
+    rhs.r = static_cast<uint8_t>(rhs.r * lhs);
+    rhs.g = static_cast<uint8_t>(rhs.g * lhs);
+    rhs.b = static_cast<uint8_t>(rhs.b * lhs);
     return rhs;
 }
 
 inline color32_t        operator*(const float lhs, color32_t         rhs)
 {
-    rhs.r *= lhs;
-    rhs.g *= lhs;
-    rhs.b *= lhs;
-    rhs.a *= lhs;
+    rhs.r = static_cast<uint8_t>(rhs.r * lhs);
+    rhs.g = static_cast<uint8_t>(rhs.g * lhs);
+    rhs.b = static_cast<uint8_t>(rhs.b * lhs);
+    rhs.a = static_cast<uint8_t>(rhs.a * lhs);
     return rhs;
 }
 
