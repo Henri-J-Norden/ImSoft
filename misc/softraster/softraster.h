@@ -594,7 +594,7 @@ void renderDrawLists(ImDrawData *drawData, texture_t<SCREEN> &screen)
       {
         renderCommand<POS>(
           screen,
-          reinterpret_cast<const texture_base_t *>(pcmd.TextureId),
+          reinterpret_cast<const texture_base_t *>(pcmd.GetTexID()),
           vtx_buffer,
           idx_buffer,
           pcmd);
