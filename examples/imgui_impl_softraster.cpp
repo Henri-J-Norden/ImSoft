@@ -33,8 +33,8 @@ void ImGui_ImplSoftraster_RenderDrawData(ImDrawData *draw_data)
 
   Screen->clear();
 
-  // using pos_t = uint32_t;
-  using pos_t = float;
+  // using pos_t = float;
+  using pos_t = int32_t;
 
   switch (Screen->type)
   {
