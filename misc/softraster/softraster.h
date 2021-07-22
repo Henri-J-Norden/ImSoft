@@ -506,10 +506,11 @@ void renderCommand(texture_t<SCREEN> &screen,
         quad.p1.v = tluv.y;
         quad.p2.u = bruv.x;
         quad.p2.v = bruv.y;
-        quad.p1.c = color32_t(verts[0]->col >> IM_COL32_R_SHIFT,
-                              verts[0]->col >> IM_COL32_G_SHIFT,
-                              verts[0]->col >> IM_COL32_B_SHIFT,
-                              verts[0]->col >> IM_COL32_A_SHIFT);
+        quad.p1.c =
+          color32_t(static_cast<uint8_t>(verts[0]->col >> IM_COL32_R_SHIFT),
+                    static_cast<uint8_t>(verts[0]->col >> IM_COL32_G_SHIFT),
+                    static_cast<uint8_t>(verts[0]->col >> IM_COL32_B_SHIFT),
+                    static_cast<uint8_t>(verts[0]->col >> IM_COL32_A_SHIFT));
         quad.p2.c = quad.p1.c;
 
         const bool noUV = (quad.p1.u == quad.p2.u) && (quad.p1.v == quad.p2.v);
@@ -528,28 +529,31 @@ void renderCommand(texture_t<SCREEN> &screen,
     tri.p1.y = static_cast<POS>(verts[0]->pos.y);
     tri.p1.u = verts[0]->uv.x;
     tri.p1.v = verts[0]->uv.y;
-    tri.p1.c = color32_t(verts[0]->col >> IM_COL32_R_SHIFT,
-                         verts[0]->col >> IM_COL32_G_SHIFT,
-                         verts[0]->col >> IM_COL32_B_SHIFT,
-                         verts[0]->col >> IM_COL32_A_SHIFT);
+    tri.p1.c =
+      color32_t(static_cast<uint8_t>(verts[0]->col >> IM_COL32_R_SHIFT),
+                static_cast<uint8_t>(verts[0]->col >> IM_COL32_G_SHIFT),
+                static_cast<uint8_t>(verts[0]->col >> IM_COL32_B_SHIFT),
+                static_cast<uint8_t>(verts[0]->col >> IM_COL32_A_SHIFT));
 
     tri.p2.x = static_cast<POS>(verts[1]->pos.x);
     tri.p2.y = static_cast<POS>(verts[1]->pos.y);
     tri.p2.u = verts[1]->uv.x;
     tri.p2.v = verts[1]->uv.y;
-    tri.p2.c = color32_t(verts[1]->col >> IM_COL32_R_SHIFT,
-                         verts[1]->col >> IM_COL32_G_SHIFT,
-                         verts[1]->col >> IM_COL32_B_SHIFT,
-                         verts[1]->col >> IM_COL32_A_SHIFT);
+    tri.p2.c =
+      color32_t(static_cast<uint8_t>(verts[1]->col >> IM_COL32_R_SHIFT),
+                static_cast<uint8_t>(verts[1]->col >> IM_COL32_G_SHIFT),
+                static_cast<uint8_t>(verts[1]->col >> IM_COL32_B_SHIFT),
+                static_cast<uint8_t>(verts[1]->col >> IM_COL32_A_SHIFT));
 
     tri.p3.x = static_cast<POS>(verts[2]->pos.x);
     tri.p3.y = static_cast<POS>(verts[2]->pos.y);
     tri.p3.u = verts[2]->uv.x;
     tri.p3.v = verts[2]->uv.y;
-    tri.p3.c = color32_t(verts[2]->col >> IM_COL32_R_SHIFT,
-                         verts[2]->col >> IM_COL32_G_SHIFT,
-                         verts[2]->col >> IM_COL32_B_SHIFT,
-                         verts[2]->col >> IM_COL32_A_SHIFT);
+    tri.p3.c =
+      color32_t(static_cast<uint8_t>(verts[2]->col >> IM_COL32_R_SHIFT),
+                static_cast<uint8_t>(verts[2]->col >> IM_COL32_G_SHIFT),
+                static_cast<uint8_t>(verts[2]->col >> IM_COL32_B_SHIFT),
+                static_cast<uint8_t>(verts[2]->col >> IM_COL32_A_SHIFT));
 
     // Make sure the winding order is correct.
     if (halfspace(edge_t<POS>{point_t<POS>{tri.p1.x, tri.p1.y},
