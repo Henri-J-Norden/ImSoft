@@ -158,6 +158,7 @@ struct alpha8_t
   uint8_t a;
 
   alpha8_t() = default;
+  alpha8_t &operator=(const alpha8_t &) = default;
   alpha8_t(const uint8_t alpha) : a(alpha) {}
   alpha8_t(const signed int alpha) : a(static_cast<uint8_t>(alpha)) {}
   alpha8_t(const unsigned int alpha) : a(static_cast<uint8_t>(alpha)) {}
@@ -211,6 +212,7 @@ struct value8_t
   uint8_t v;
 
   value8_t() = default;
+  value8_t &operator=(const value8_t &) = default;
   value8_t(const uint8_t value) : v(value) {}
   value8_t(const signed int value) : v(static_cast<uint8_t>(value)) {}
   value8_t(const unsigned int value) : v(static_cast<uint8_t>(value)) {}
@@ -267,6 +269,7 @@ struct color16_t
   uint16_t rgb;
 
   color16_t() = default;
+  color16_t &operator=(const color16_t &) = default;
   color16_t(const uint16_t val) : rgb(val) {}
   color16_t(const signed int val) : rgb(static_cast<uint16_t>(val)) {}
   color16_t(const unsigned int val) : rgb(static_cast<uint16_t>(val)) {}
@@ -329,6 +332,7 @@ struct color16_alpha8_t
   alpha8_t alpha;
 
   color16_alpha8_t() = default;
+  color16_alpha8_t &operator=(const color16_alpha8_t &) = default;
   color16_alpha8_t(const uint16_t val, const uint8_t alpha)
   : color(val), alpha(alpha)
   {
@@ -407,6 +411,7 @@ struct color24_t
   uint8_t r, g, b;
 
   color24_t() = default;
+  color24_t &operator=(const color24_t &) = default;
   color24_t(const uint8_t valR, const uint8_t valG, const uint8_t valB)
   : r(valR), g(valG), b(valB)
   {
@@ -473,6 +478,7 @@ struct color32_t
   uint8_t r, g, b, a;
 
   color32_t() = default;
+  color32_t &operator=(const color32_t &) = default;
   color32_t(const uint8_t valR,
             const uint8_t valG,
             const uint8_t valB,
