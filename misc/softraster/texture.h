@@ -3,6 +3,7 @@
 
 #include "defines.h"
 #include "color.h"
+#include "stdlib.h"
 
 enum class texture_type_t { NONE = 0, ALPHA8, VALUE8, COLOR16, COLOR24, COLOR32 };
 
