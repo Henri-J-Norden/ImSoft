@@ -150,8 +150,8 @@ typedef int ImGuiTabBarFlags;       // -> enum ImGuiTabBarFlags_     // Flags: f
 typedef int ImGuiTabItemFlags;      // -> enum ImGuiTabItemFlags_    // Flags: for BeginTabItem()
 typedef int ImGuiTreeNodeFlags;     // -> enum ImGuiTreeNodeFlags_   // Flags: for TreeNode*(),CollapsingHeader()
 typedef int ImGuiWindowFlags;       // -> enum ImGuiWindowFlags_     // Flags: for Begin*()
-typedef int (*ImGuiInputTextCallback)(ImGuiInputTextCallbackData *data);
-typedef void (*ImGuiSizeCallback)(ImGuiSizeCallbackData* data);
+typedef int (*ImGuiInputTextCallback)(struct ImGuiInputTextCallbackData *data);
+typedef void (*ImGuiSizeCallback)(struct ImGuiSizeCallbackData* data);
 
 // Scalar data types
 typedef signed char         ImS8;   // 8-bit signed integer == char
